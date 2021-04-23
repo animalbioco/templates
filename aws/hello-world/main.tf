@@ -6,3 +6,13 @@ provider "aws" {
 terraform {
   required_version = ">= 0.12"
 }
+
+resource "null_resource" "list" {
+  triggers = {
+    timestamp = "${timestamp()}"
+  }
+  provisioner "local-exec" {
+    command = "env"
+    interpreter = ["sh", "-c"]
+  }
+}
